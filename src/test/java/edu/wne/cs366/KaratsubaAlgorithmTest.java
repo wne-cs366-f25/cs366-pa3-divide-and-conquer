@@ -170,7 +170,7 @@ class KaratsubaAlgorithmTest {
     void testHandTraceExample() {
         BigInteger x = new BigInteger("3412");
         BigInteger y = new BigInteger("1523");
-        BigInteger expected = new BigInteger("5194276");
+        BigInteger expected = new BigInteger("5196476");
         
         BigInteger result = KaratsubaAlgorithm.karatsuba(x, y);
         assertEquals(expected, result, "Hand-trace example (3412 × 1523) failed");
