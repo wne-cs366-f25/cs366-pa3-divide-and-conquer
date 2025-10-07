@@ -22,7 +22,7 @@ java {
 }
 
 application {
-    mainClass = 'edu.wne.cs366.GraphAlgorithms'
+    mainClass = 'edu.wne.cs366.KaratsubaAlgorithm'
 }
 
 test {

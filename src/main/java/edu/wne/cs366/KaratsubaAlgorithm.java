@@ -35,15 +35,48 @@ public class KaratsubaAlgorithm {
      * @return the product of x and y
      */
     public static BigInteger karatsuba(BigInteger x, BigInteger y) {
-        // TODO: Implement the Karatsuba algorithm
+        // Handle negative numbers
+        boolean negativeResult = (x.signum() < 0) ^ (y.signum() < 0);
+        x = x.abs();
+        y = y.abs();
+        
         // Base case: if either number has 1 digit, use standard multiplication
+        int xDigits = getDigitCount(x);
+        int yDigits = getDigitCount(y);
         
-        // Recursive case: 
-        // 1. Split x and y into high and low parts
-        // 2. Recursively calculate A, C, and the intermediate sum
-        // 3. Combine results using the Karatsuba formula
+        if (xDigits == 1 || yDigits == 1) {
+            BigInteger result = x.multiply(y);
+            return negativeResult ? result.negate() : result;
+        }
         
-        return BigInteger.ZERO; // Replace with your implementation
+        // Make sure both numbers have the same number of digits (pad with zeros if needed)
+        int n = Math.max(xDigits, yDigits);
+        if (n % 2 == 1) {
+            n++; // Make n even for easier splitting
+        }
+        
+        int half = n / 2;
+        
+        // Split x and y into high and low parts
+        BigInteger[] xParts = splitNumber(x, half);
+        BigInteger[] yParts = splitNumber(y, half);
+        
+        BigInteger x1 = xParts[0]; // high part of x
+        BigInteger x0 = xParts[1]; // low part of x
+        BigInteger y1 = yParts[0]; // high part of y
+        BigInteger y0 = yParts[1]; // low part of y
+        
+        // Recursively calculate the three products
+        BigInteger A = karatsuba(x1, y1); // A = x1 * y1
+        BigInteger C = karatsuba(x0, y0); // C = x0 * y0
+        BigInteger B = karatsuba(x1.add(x0), y1.add(y0)).subtract(A).subtract(C); // B = (x1+x0)(y1+y0) - A - C
+        
+        // Combine results using Karatsuba formula: A * 10^n + B * 10^(n/2) + C
+        BigInteger result = A.multiply(BigInteger.TEN.pow(n))
+                             .add(B.multiply(BigInteger.TEN.pow(half)))
+                             .add(C);
+        
+        return negativeResult ? result.negate() : result;
     }
     
     /**
@@ -53,9 +86,10 @@ public class KaratsubaAlgorithm {
      * @return the number of digits in num
      */
     private static int getDigitCount(BigInteger num) {
-        // TODO: Implement digit counting
-        // Hint: Convert to string and get length, or use logarithms
-        return 0; // Replace with your implementation
+        if (num.equals(BigInteger.ZERO)) {
+            return 1;
+        }
+        return num.abs().toString().length();
     }
     
     /**
@@ -69,11 +103,10 @@ public class KaratsubaAlgorithm {
      * @return array where [0] is high part, [1] is low part
      */
     private static BigInteger[] splitNumber(BigInteger num, int splitPosition) {
-        // TODO: Implement number splitting
-        // Hint: Use BigInteger.divide() and BigInteger.remainder()
-        // with appropriate powers of 10
-        
-        return new BigInteger[]{BigInteger.ZERO, BigInteger.ZERO}; // Replace with your implementation
+        BigInteger divisor = BigInteger.TEN.pow(splitPosition);
+        BigInteger high = num.divide(divisor);
+        BigInteger low = num.remainder(divisor);
+        return new BigInteger[]{high, low};
     }
     
     /**
