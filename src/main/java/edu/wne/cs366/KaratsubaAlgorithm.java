@@ -129,31 +129,29 @@ public class KaratsubaAlgorithm {
         System.out.println("CS366 - PA3: Karatsuba Algorithm Implementation");
         System.out.println("================================================");
         
-        // Test cases
+        // Test cases with 4, 8, 16, and 32 digits
         BigInteger[] testCasesX = {
-            new BigInteger("1234"),
-            new BigInteger("5678"),
-            new BigInteger("123456789"),
-            new BigInteger("987654321"),
-            new BigInteger("12345678901234567890")
+            new BigInteger("1234"),                                    // 4 digits
+            new BigInteger("12345678"),                                // 8 digits
+            new BigInteger("1234567890123456"),                        // 16 digits
+            new BigInteger("12345678901234567890123456789012")         // 32 digits
         };
         
         BigInteger[] testCasesY = {
-            new BigInteger("5678"),
-            new BigInteger("1234"), 
-            new BigInteger("987654321"),
-            new BigInteger("123456789"),
-            new BigInteger("98765432109876543210")
+            new BigInteger("5678"),                                    // 4 digits
+            new BigInteger("87654321"),                                // 8 digits
+            new BigInteger("6543210987654321"),                        // 16 digits
+            new BigInteger("98765432109876543210987654321098")         // 32 digits
         };
         
-        System.out.println("\\nTesting Karatsuba Implementation:");
+        System.out.println("\nTesting Karatsuba Implementation:");
         System.out.println("---------------------------------");
         
         for (int i = 0; i < testCasesX.length; i++) {
             BigInteger x = testCasesX[i];
             BigInteger y = testCasesY[i];
             
-            System.out.printf("\\nTest %d: %s × %s\\n", i + 1, x, y);
+            System.out.printf("\nTest %d: %s × %s\n", i + 1, x, y);
             
             // Time standard multiplication
             long startTime = System.nanoTime();
@@ -165,19 +163,19 @@ public class KaratsubaAlgorithm {
             BigInteger karatsubaResult = karatsuba(x, y);
             long karatsubaTime = System.nanoTime() - startTime;
             
-            System.out.printf("Standard result:  %s\\n", standardResult);
-            System.out.printf("Karatsuba result: %s\\n", karatsubaResult);
-            System.out.printf("Results match: %s\\n", standardResult.equals(karatsubaResult));
-            System.out.printf("Standard time:  %d nanoseconds\\n", standardTime);
-            System.out.printf("Karatsuba time: %d nanoseconds\\n", karatsubaTime);
+            System.out.printf("Standard result:  %s\n", standardResult);
+            System.out.printf("Karatsuba result: %s\n", karatsubaResult);
+            System.out.printf("Results match: %s\n", standardResult.equals(karatsubaResult));
+            System.out.printf("Standard time:  %d nanoseconds\n", standardTime);
+            System.out.printf("Karatsuba time: %d nanoseconds\n", karatsubaTime);
             
             if (karatsubaTime > 0) {
                 double speedup = (double) standardTime / karatsubaTime;
-                System.out.printf("Speedup factor: %.2fx\\n", speedup);
+                System.out.printf("Speedup factor: %.2fx\n", speedup);
             }
         }
         
-        System.out.println("\\n================================================");
+        System.out.println("\n================================================");
         System.out.println("Complete the theoretical analysis in ANALYSIS.md");
         System.out.println("and hand-trace the algorithm using the provided worksheet.");
     }

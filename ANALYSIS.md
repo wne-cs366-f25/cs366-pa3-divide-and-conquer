@@ -99,9 +99,10 @@ Fill in the following table based on your program's output:
 
 | Input Size | Standard Time (ns) | Karatsuba Time (ns) | Speedup Factor |
 | ---------- | ------------------ | ------------------- | -------------- |
-| 4 digits   | ~15590            | ~756248             | 0.02x          |
-| 9 digits   | ~1683             | ~1895794            | 0.00x          |
-| 20 digits  | ~14989            | ~3216092            | 0.00x          |
+| 4 digits   | 20238             | 927728              | 0.02x          |
+| 8 digits   | 4549              | 2823948             | 0.00x          |
+| 16 digits  | 8286              | 4702183             | 0.00x          |
+| 32 digits  | 8536              | 4655051             | 0.00x          |
 
 #### Analysis Questions
 
