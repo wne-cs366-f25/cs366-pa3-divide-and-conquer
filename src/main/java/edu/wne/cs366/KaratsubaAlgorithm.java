@@ -120,7 +120,7 @@ public class KaratsubaAlgorithm {
             BigInteger x = testCasesX[i];
             BigInteger y = testCasesY[i];
             
-            System.out.printf("\nTest %d: %s × %s\n", i + 1, x, y);
+            System.out.printf("\nTest %d: %s x %s\n", i + 1, x, y);
             
             // Time standard multiplication
             long startTime = System.nanoTime();
