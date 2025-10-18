@@ -88,7 +88,7 @@ After implementing and testing your Karatsuba algorithm:
 
 #### Performance Results
 
-Fill in the following table based on your program's output:
+Fill in the following table based on your program's output (you will need to modify the main method to test these inputs):
 
 | Input Size | Standard Time (ns) | Karatsuba Time (ns) | Speedup Factor |
 | ---------- | ------------------ | ------------------- | -------------- |

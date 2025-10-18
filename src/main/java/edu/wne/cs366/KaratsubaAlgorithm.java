@@ -113,14 +113,14 @@ public class KaratsubaAlgorithm {
             new BigInteger("98765432109876543210")
         };
         
-        System.out.println("\\nTesting Karatsuba Implementation:");
+        System.out.println("\nTesting Karatsuba Implementation:");
         System.out.println("---------------------------------");
         
         for (int i = 0; i < testCasesX.length; i++) {
             BigInteger x = testCasesX[i];
             BigInteger y = testCasesY[i];
             
-            System.out.printf("\\nTest %d: %s × %s\\n", i + 1, x, y);
+            System.out.printf("\nTest %d: %s × %s\n", i + 1, x, y);
             
             // Time standard multiplication
             long startTime = System.nanoTime();
@@ -132,19 +132,19 @@ public class KaratsubaAlgorithm {
             BigInteger karatsubaResult = karatsuba(x, y);
             long karatsubaTime = System.nanoTime() - startTime;
             
-            System.out.printf("Standard result:  %s\\n", standardResult);
-            System.out.printf("Karatsuba result: %s\\n", karatsubaResult);
-            System.out.printf("Results match: %s\\n", standardResult.equals(karatsubaResult));
-            System.out.printf("Standard time:  %d nanoseconds\\n", standardTime);
-            System.out.printf("Karatsuba time: %d nanoseconds\\n", karatsubaTime);
+            System.out.printf("Standard result:  %s\n", standardResult);
+            System.out.printf("Karatsuba result: %s\n", karatsubaResult);
+            System.out.printf("Results match: %s\n", standardResult.equals(karatsubaResult));
+            System.out.printf("Standard time:  %d nanoseconds\n", standardTime);
+            System.out.printf("Karatsuba time: %d nanoseconds\n", karatsubaTime);
             
             if (karatsubaTime > 0) {
                 double speedup = (double) standardTime / karatsubaTime;
-                System.out.printf("Speedup factor: %.2fx\\n", speedup);
+                System.out.printf("Speedup factor: %.2fx\n", speedup);
             }
         }
         
-        System.out.println("\\n================================================");
+        System.out.println("\n================================================");
         System.out.println("Complete the theoretical analysis in ANALYSIS.md");
         System.out.println("and hand-trace the algorithm using the provided worksheet.");
     }
